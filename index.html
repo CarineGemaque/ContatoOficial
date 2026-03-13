@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carine Gemaque | Fotografia & Conteúdo Visual</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Playfair Display (Elegante/Serifa) e Poppins (Moderna/Sem Serifa) -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- FontAwesome (Ícones) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        rose: {
+                            DEFAULT: '#D4A373', // Tom elegante de nude/rose gold
+                            light: '#EAE0D5',
+                            dark: '#A67C52'
+                        },
+                        dark: '#1A1A1A', // Quase preto
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Animação de flutuação suave para a foto principal */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* Animação de pulso para o botão do WhatsApp */
+        @keyframes pulse-soft {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+        }
+        .btn-whatsapp-pulse {
+            animation: pulse-soft 2s infinite;
+        }
+
+        /* Efeito Glassmorphism para o menu */
+        .glass-nav {
+            background: rgba(26, 26, 26, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* Esconder barra de rolagem mas permitir rolagem */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4A373;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="font-sans text-gray-800 bg-rose-light/20 antialiased selection:bg-rose selection:text-white">
+
+    <!-- Variáveis do WhatsApp -->
+    <script>
+        const phone = "559191424851";
+        const message = "Olá, Carine! Vi o seu site e gostaria de saber mais sobre os seus serviços de fotografia e design.";
+        const encodedMessage = encodeURIComponent(message);
+        const waLink = `https://wa.me/${phone}?text=${encodedMessage}`;
+    </script>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 transition-all duration-300 glass-nav" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <span class="font-serif text-2xl font-bold text-rose">Carine Gemaque</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#servicos" class="text-gray-300 hover:text-rose transition-colors text-sm uppercase tracking-wider font-medium">Serviços</a>
+                    <a href="#sobre" class="text-gray-300 hover:text-rose transition-colors text-sm uppercase tracking-wider font-medium">Sobre Mim</a>
+                    <a href="#" onclick="window.open(waLink, '_blank')" class="bg-rose hover:bg-rose-dark text-white px-6 py-2.5 rounded-full transition-all duration-300 transform hover:-translate-y-1 shadow-lg shadow-rose/30 font-medium">
+                        Fale Comigo
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-rose focus:outline-none p-2">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-dark border-t border-gray-800">
+            <div class="px-4 pt-2 pb-6 space-y-2 shadow-xl">
+                <a href="#servicos" class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-rose hover:bg-gray-800 rounded-md transition-colors mobile-link">Serviços</a>
+                <a href="#sobre" class="block px-3 py-3 text-base font-medium text-gray-300 hover:text-rose hover:bg-gray-800 rounded-md transition-colors mobile-link">Sobre Mim</a>
+                <a href="#" onclick="window.open(waLink, '_blank')" class="block px-3 py-3 mt-4 text-center text-base font-medium text-white bg-rose rounded-md shadow-md mobile-link">
+                    <i class="fab fa-whatsapp mr-2"></i> Chamar no WhatsApp
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Dark background para mesclar com a foto) -->
+    <section class="relative bg-dark min-h-screen flex items-center pt-20 overflow-hidden">
+        <!-- Elementos decorativos de fundo -->
+        <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 pointer-events-none">
+            <div class="absolute top-[-10%] left-[-10%] w-96 h-96 bg-rose rounded-full mix-blend-multiply filter blur-[128px] opacity-20"></div>
+            <div class="absolute bottom-[-10%] right-[-10%] w-96 h-96 bg-rose-light rounded-full mix-blend-multiply filter blur-[128px] opacity-10"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="flex flex-col-reverse lg:flex-row items-center justify-between gap-12 lg:gap-8">
+                
+                <!-- Text Content -->
+                <div class="w-full lg:w-1/2 text-center lg:text-left" data-aos="fade-right" data-aos-duration="1000">
+                    <p class="text-rose tracking-[0.2em] uppercase text-sm font-semibold mb-4">Design & Fotografia Profissional</p>
+                    <h1 class="font-serif text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                        Eleve o Nível da Sua Marca com <span class="text-rose italic">Imagens que Vendem.</span>
+                    </h1>
+                    <p class="text-gray-400 text-lg md:text-xl mb-8 font-light max-w-2xl mx-auto lg:mx-0">
+                        Crio conteúdos visuais estratégicos, modernos e personalizados para destacar você e o seu negócio no mercado.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                        <button onclick="window.open(waLink, '_blank')" class="w-full sm:w-auto px-8 py-4 bg-rose text-white rounded-full font-medium text-lg hover:bg-white hover:text-dark transition-all duration-300 shadow-[0_0_20px_rgba(212,163,115,0.4)] transform hover:-translate-y-1">
+                            Solicitar Orçamento <i class="fas fa-arrow-right ml-2 text-sm"></i>
+                        </button>
+                        <a href="#servicos" class="w-full sm:w-auto px-8 py-4 bg-transparent border border-gray-600 text-white rounded-full font-medium text-lg hover:border-rose hover:text-rose transition-all duration-300">
+                            Ver Serviços
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="w-full lg:w-1/2 flex justify-center lg:justify-end mt-10 lg:mt-0" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="relative w-72 md:w-96 lg:w-[450px]">
+                        <!-- Círculo decorativo atrás da imagem -->
+                        <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 md:w-80 md:h-80 bg-rose/10 rounded-full blur-2xl"></div>
+                        
+                        <!-- A foto principal flutuante com bordas arredondadas, sombra 3D e efeitos hover/touch -->
+                        <img src="ft%20carine%2001.jpeg" alt="Carine Gemaque" class="relative z-10 w-full h-auto object-cover rounded-[2rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] animate-float hover:scale-[1.03] active:scale-[0.98] transition-transform duration-500 cursor-pointer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicos" class="py-24 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16" data-aos="fade-up">
+                <p class="text-rose font-semibold tracking-widest uppercase text-sm mb-2">O que eu faço</p>
+                <h2 class="font-serif text-3xl md:text-5xl text-dark font-bold mb-6">Soluções Visuais Completas</h2>
+                <p class="text-gray-500 text-lg">Serviços pensados milimetricamente para agregar valor, profissionalismo e credibilidade à sua imagem.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="group bg-rose-light/10 p-10 rounded-3xl hover:bg-white hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-transparent hover:border-rose-light" data-aos="fade-up" data-aos-delay="100">
+                    <div class="w-16 h-16 bg-rose/10 rounded-2xl flex items-center justify-center text-rose text-2xl mb-6 group-hover:scale-110 group-hover:bg-rose group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-camera"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">Fotografia Profissional</h3>
+                    <p class="text-gray-600 leading-relaxed">Ensaios fotográficos com olhar artístico e técnico para pessoas, produtos e marcas que buscam se destacar.</p>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="group bg-rose-light/10 p-10 rounded-3xl hover:bg-white hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-transparent hover:border-rose-light" data-aos="fade-up" data-aos-delay="200">
+                    <div class="w-16 h-16 bg-rose/10 rounded-2xl flex items-center justify-center text-rose text-2xl mb-6 group-hover:scale-110 group-hover:bg-rose group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-photo-video"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">Criação & Edição</h3>
+                    <p class="text-gray-600 leading-relaxed">Produção, recorte e edição profissional de fotos e vídeos, garantindo uma estética refinada e pronta para encantar.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="group bg-rose-light/10 p-10 rounded-3xl hover:bg-white hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-transparent hover:border-rose-light" data-aos="fade-up" data-aos-delay="300">
+                    <div class="w-16 h-16 bg-rose/10 rounded-2xl flex items-center justify-center text-rose text-2xl mb-6 group-hover:scale-110 group-hover:bg-rose group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">Identidade & Logos</h3>
+                    <p class="text-gray-600 leading-relaxed">Desenvolvimento de logotipos únicos que transmitem a essência, a confiança e a autoridade da sua marca.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="group bg-rose-light/10 p-10 rounded-3xl hover:bg-white hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-transparent hover:border-rose-light" data-aos="fade-up" data-aos-delay="400">
+                    <div class="w-16 h-16 bg-rose/10 rounded-2xl flex items-center justify-center text-rose text-2xl mb-6 group-hover:scale-110 group-hover:bg-rose group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">Banners Estratégicos</h3>
+                    <p class="text-gray-600 leading-relaxed">Criação de banners para sites e redes sociais desenhados especificamente para capturar atenção e gerar conversões.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="group bg-rose-light/10 p-10 rounded-3xl hover:bg-white hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-transparent hover:border-rose-light" data-aos="fade-up" data-aos-delay="500">
+                    <div class="w-16 h-16 bg-rose/10 rounded-2xl flex items-center justify-center text-rose text-2xl mb-6 group-hover:scale-110 group-hover:bg-rose group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-play-circle"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">Thumbnails Atrativas</h3>
+                    <p class="text-gray-600 leading-relaxed">Capas de vídeos chamativas e profissionais que aumentam drasticamente a taxa de clique do seu conteúdo.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="group bg-rose-light/10 p-10 rounded-3xl hover:bg-white hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border border-transparent hover:border-rose-light" data-aos="fade-up" data-aos-delay="600">
+                    <div class="w-16 h-16 bg-rose/10 rounded-2xl flex items-center justify-center text-rose text-2xl mb-6 group-hover:scale-110 group-hover:bg-rose group-hover:text-white transition-all duration-300">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl font-bold text-dark mb-4">Conteúdo Sob Medida</h3>
+                    <p class="text-gray-600 leading-relaxed">Produção de imagens e vídeos 100% personalizados para atender à necessidade específica do seu projeto e cliente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre" class="py-24 bg-rose-light/20 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                
+                <!-- Image side -->
+                <div class="w-full lg:w-1/2" data-aos="fade-right">
+                    <div class="relative max-w-md mx-auto lg:mx-0">
+                        <!-- Elemento decorativo atrás -->
+                        <div class="absolute -top-6 -left-6 w-full h-full border-2 border-rose rounded-[3rem] z-0 hidden md:block"></div>
+                        
+                        <!-- Foto com fundo borrado tratada com bordas elegantes e sombra -->
+                        <img src="ft%20carine%2002.jpeg?v=nova" alt="Carine Gemaque Sorrindo" class="relative z-10 w-full aspect-[4/5] object-cover rounded-[3rem] shadow-2xl transform hover:scale-[1.02] active:scale-[0.98] transition-transform duration-500">
+                        
+                        <!-- Badge flutuante -->
+                        <div class="absolute -bottom-8 -right-8 bg-white p-6 rounded-2xl shadow-xl z-20 flex items-center gap-4 animate-bounce" style="animation-duration: 3s;">
+                            <div class="bg-rose/20 p-3 rounded-full text-rose">
+                                <i class="fas fa-check-circle text-xl"></i>
+                            </div>
+                            <div>
+                                <p class="font-bold text-dark">Qualidade</p>
+                                <p class="text-sm text-gray-500">Garantida</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Text side -->
+                <div class="w-full lg:w-1/2" data-aos="fade-left">
+                    <p class="text-rose font-semibold tracking-widest uppercase text-sm mb-2">Muito Prazer,</p>
+                    <h2 class="font-serif text-3xl md:text-5xl text-dark font-bold mb-6">Eu sou <span class="text-rose">Carine Gemaque</span></h2>
+                    
+                    <div class="space-y-4 text-gray-600 text-lg leading-relaxed mb-8">
+                        <p>
+                            Sou apaixonada por traduzir ideias em imagens poderosas. Acredito que o visual da sua marca é o primeiro e mais importante ponto de contato com o seu cliente.
+                        </p>
+                        <p>
+                            Trabalho unindo técnica fotográfica, design estratégico e um senso estético apurado para entregar não apenas fotos ou logos, mas <strong>posicionamento e autoridade</strong> para você.
+                        </p>
+                        <p>
+                            Cada projeto é tratado de forma única e personalizada, garantindo que a sua essência seja transmitida em cada pixel, desde a captura da imagem até a edição final.
+                        </p>
+                    </div>
+
+                    <!-- Lista de benefícios -->
+                    <ul class="space-y-3 mb-10">
+                        <li class="flex items-center text-dark font-medium">
+                            <i class="fas fa-leaf text-rose mr-3"></i> Estética Refinada e Feminina
+                        </li>
+                        <li class="flex items-center text-dark font-medium">
+                            <i class="fas fa-stopwatch text-rose mr-3"></i> Compromisso com Prazos
+                        </li>
+                        <li class="flex items-center text-dark font-medium">
+                            <i class="fas fa-handshake text-rose mr-3"></i> Atendimento Exclusivo
+                        </li>
+                    </ul>
+
+                    <button onclick="window.open(waLink, '_blank')" class="group flex items-center gap-3 bg-dark text-white px-8 py-4 rounded-full font-medium hover:bg-rose transition-colors duration-300">
+                        Vamos criar algo incrível? 
+                        <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA / Contato Section -->
+    <section class="py-24 bg-dark relative overflow-hidden text-center">
+        <!-- Overlay sutil -->
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-10"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 relative z-10" data-aos="zoom-in">
+            <h2 class="font-serif text-4xl md:text-5xl text-white font-bold mb-6">Pronta para transformar a sua imagem profissional?</h2>
+            <p class="text-gray-300 text-lg md:text-xl mb-10 font-light">
+                Toque no botão abaixo para conversar diretamente comigo pelo WhatsApp. Tire suas dúvidas e solicite um orçamento sem compromisso.
+            </p>
+            
+            <button onclick="window.open(waLink, '_blank')" class="inline-flex items-center justify-center gap-3 bg-[#25D366] text-white px-10 py-5 rounded-full font-bold text-lg md:text-xl shadow-[0_10px_30px_rgba(37,211,102,0.3)] hover:-translate-y-2 hover:shadow-[0_15px_40px_rgba(37,211,102,0.4)] transition-all duration-300">
+                <i class="fab fa-whatsapp text-2xl"></i>
+                Falar com a Carine
+            </button>
+            <p class="text-gray-400 mt-6 text-sm uppercase tracking-widest"><i class="fas fa-phone-alt mr-2 text-rose"></i> 91 9142-4851</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black py-8 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h3 class="font-serif text-2xl text-white font-bold mb-4">Carine Gemaque</h3>
+            <p class="text-gray-500 text-sm mb-4">Especialista em Fotografia e Conteúdo Visual Estratégico.</p>
+            <p class="text-gray-600 text-xs uppercase tracking-widest">
+                &copy; 2024 Carine Gemaque. Todos os direitos reservados.
+            </p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <button onclick="window.open(waLink, '_blank')" class="fixed bottom-6 right-6 w-16 h-16 bg-[#25D366] text-white rounded-full flex items-center justify-center text-3xl shadow-2xl z-50 btn-whatsapp-pulse hover:bg-[#20bd5a] transition-colors cursor-pointer" aria-label="Fale conosco no WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Inicializar animações de rolagem (AOS)
+        AOS.init({
+            once: true, // A animação acontece apenas uma vez ao rolar
+            offset: 100, // Deslocamento (em px) do ponto de disparo original
+        });
+
+        // Lógica do Menu Mobile
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        const links = document.querySelectorAll('.mobile-link');
+        const icon = btn.querySelector('i');
+
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+            if (menu.classList.contains('hidden')) {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            } else {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            }
+        });
+
+        // Fechar menu ao clicar em um link
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                menu.classList.add('hidden');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Mudar cor do Navbar ao rolar
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+</body>
+</html>
